@@ -6,20 +6,20 @@
 
 <h1>Welcome to our clinic</h1>
 <br>
-<form action="patient">
+<form action="/patient">
     <h1>Panel Pacjenta</h1>
     <br>
     <input type="submit" value="Panel Pacjenta">
 </form>
 <br>
-<form action="doctor">
+<form action="/doctor">
     <h1>Panel Lekarza</h1>
     <br>
     <input type="submit" value="Panel Lekarza">
 
 </form>
 <br>
-<form action="admin">
+<form action="/admin">
     <h1>Panel Administracyjny</h1>
     <br>
     <input type="submit" value="Panel Administracyjny">

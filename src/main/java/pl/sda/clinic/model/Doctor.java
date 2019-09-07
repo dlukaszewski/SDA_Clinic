@@ -10,8 +10,8 @@ import java.util.Objects;
 public class Doctor {
 
     @Id
-    @GeneratedValue(generator = "idSeq")
-    @SequenceGenerator(name = "idSeq", sequenceName = "id_seq", allocationSize = 1)
+    @GeneratedValue(generator = "docSeq")
+    @SequenceGenerator(name = "docSeq", sequenceName = "doc_seq", allocationSize = 1)
     private Long id;
     private String firstName;
     private String lastName;
