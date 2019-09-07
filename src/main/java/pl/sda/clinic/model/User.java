@@ -10,7 +10,6 @@ public class User {
     @Id
     private String userName;
     private String password;
-    private Long id;
 
 
     public User() {
@@ -19,7 +18,7 @@ public class User {
     public User(String userName, String password, Long id) {
         this.userName = userName;
         this.password = password;
-        this.id = id;
+
     }
 
     public String getUserName() {
@@ -38,25 +37,16 @@ public class User {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return Objects.equals(getUserName(), user.getUserName()) &&
-                Objects.equals(getId(), user.getId());
+        return Objects.equals(getUserName(), user.getUserName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUserName(), getId());
+        return Objects.hash(getUserName());
     }
 }
