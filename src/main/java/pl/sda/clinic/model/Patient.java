@@ -1,25 +1,27 @@
 package pl.sda.clinic.model;
 
-import org.springframework.data.annotation.Id;
+
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 public class Patient {
 
-    @Id
+
     private String firstName;
     private String lastName;
-    private Long patientId;
+    @Id
+    private Long pesel;
     private LocalDateTime appointmentDate;
     private String password;
 
-    public Patient(String firstName, String lastName, String password,Long patientId, LocalDateTime appointmentDate) {
+    public Patient(String firstName, String lastName, String password,Long pesel, LocalDateTime appointmentDate) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.patientId = patientId;
+        this.pesel = pesel;
         this.appointmentDate = appointmentDate;
         this.password = password;
     }
@@ -43,12 +45,12 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public Long getPatientId() {
-        return patientId;
+    public Long getPesel() {
+        return pesel;
     }
 
-    public void setPatientId(Long patientId) {
-        this.patientId = patientId;
+    public void setPesel(Long pesel) {
+        this.pesel = pesel;
     }
 
     public LocalDateTime getAppointmentDate() {
@@ -72,12 +74,12 @@ public class Patient {
         if (this == o) return true;
         if (!(o instanceof Patient)) return false;
         Patient patient = (Patient) o;
-        return Objects.equals(getPatientId(), patient.getPatientId());
+        return Objects.equals(getPesel(), patient.getPesel());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPatientId());
+        return Objects.hash(getPesel());
     }
 
     @Override
@@ -85,7 +87,7 @@ public class Patient {
         return "Patient{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", patientId=" + patientId +
+                ", id=" + pesel +
                 ", appointmentDate=" + appointmentDate +
                 ", password='" + password + '\'' +
                 '}';

@@ -1,24 +1,26 @@
 package pl.sda.clinic.model;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import java.util.Objects;
 
 @Entity
 public class Doctor {
 
     @Id
+    @GeneratedValue(generator = "docSeq")
+    @SequenceGenerator(name = "docSeq", sequenceName = "doc_seq", allocationSize = 1)
+    private Long id;
     private String firstName;
     private String lastName;
-    private String doctorId;
     private String specialization;
-    private String password;
 
-    public Doctor(String doctorId, String specialization, String password, String firstName, String lastName) {
-        this.doctorId = doctorId;
+
+    public Doctor(Long id, String specialization, String firstName, String lastName) {
+        this.id = id;
         this.specialization = specialization;
-        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -26,12 +28,12 @@ public class Doctor {
     public Doctor() {
     }
 
-    public String getDoctorId() {
-        return doctorId;
+    public Long getId() {
+        return id;
     }
 
-    public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getSpecialization() {
@@ -42,13 +44,6 @@ public class Doctor {
         this.specialization = specialization;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -71,22 +66,21 @@ public class Doctor {
         if (this == o) return true;
         if (!(o instanceof Doctor)) return false;
         Doctor doctor = (Doctor) o;
-        return Objects.equals(getDoctorId(), doctor.getDoctorId());
+        return Objects.equals(getId(), doctor.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDoctorId());
+        return Objects.hash(getId());
     }
 
     @Override
     public String toString() {
         return "Doctor{" +
-                "firstName='" + firstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", doctorId='" + doctorId + '\'' +
                 ", specialization='" + specialization + '\'' +
-                ", password='" + password + '\'' +
                 '}';
     }
 }
