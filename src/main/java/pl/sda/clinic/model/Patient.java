@@ -14,14 +14,14 @@ public class Patient {
     private String firstName;
     private String lastName;
     @Id
-    private Long id;
+    private Long pesel;
     private LocalDateTime appointmentDate;
     private String password;
 
-    public Patient(String firstName, String lastName, String password,Long id, LocalDateTime appointmentDate) {
+    public Patient(String firstName, String lastName, String password,Long pesel, LocalDateTime appointmentDate) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.id = id;
+        this.pesel = pesel;
         this.appointmentDate = appointmentDate;
         this.password = password;
     }
@@ -45,12 +45,12 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public Long getId() {
-        return id;
+    public Long getPesel() {
+        return pesel;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPesel(Long pesel) {
+        this.pesel = pesel;
     }
 
     public LocalDateTime getAppointmentDate() {
@@ -74,12 +74,12 @@ public class Patient {
         if (this == o) return true;
         if (!(o instanceof Patient)) return false;
         Patient patient = (Patient) o;
-        return Objects.equals(getId(), patient.getId());
+        return Objects.equals(getPesel(), patient.getPesel());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(getPesel());
     }
 
     @Override
@@ -87,7 +87,7 @@ public class Patient {
         return "Patient{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", id=" + id +
+                ", id=" + pesel +
                 ", appointmentDate=" + appointmentDate +
                 ", password='" + password + '\'' +
                 '}';

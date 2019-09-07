@@ -16,12 +16,11 @@ public class Doctor {
     private String firstName;
     private String lastName;
     private String specialization;
-    private String password;
 
-    public Doctor(Long id, String specialization, String password, String firstName, String lastName) {
+
+    public Doctor(Long id, String specialization, String firstName, String lastName) {
         this.id = id;
         this.specialization = specialization;
-        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -45,13 +44,6 @@ public class Doctor {
         this.specialization = specialization;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -85,11 +77,10 @@ public class Doctor {
     @Override
     public String toString() {
         return "Doctor{" +
-                "firstName='" + firstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", id=" + id +
                 ", specialization='" + specialization + '\'' +
-                ", password='" + password + '\'' +
                 '}';
     }
 }

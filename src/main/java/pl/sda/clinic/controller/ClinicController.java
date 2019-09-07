@@ -28,7 +28,7 @@ private final ClinicService clinicService;
     }
     @GetMapping("/patient")
     public ModelAndView getPatientPage(){
-        return new ModelAndView("Patient");
+        return new ModelAndView("patient");
     }
 
 }
