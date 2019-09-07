@@ -1,13 +1,17 @@
 package pl.sda.clinic.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import java.util.Objects;
 
 @Entity
 public class Doctor {
 
     @Id
+    @GeneratedValue(generator = "idSeq")
+    @SequenceGenerator(name = "idSeq", sequenceName = "id_seq", allocationSize = 1)
     private Long id;
     private String firstName;
     private String lastName;
