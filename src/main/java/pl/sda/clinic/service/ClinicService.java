@@ -10,11 +10,11 @@ public class ClinicService {
 
     private final DoctorRepository doctorRepository;
     private final PatientRepository patientRepository;
-    private final UserRepository userRepository;
+
 
     public ClinicService(DoctorRepository doctorRepository, PatientRepository patientRepository,UserRepository userRepository) {
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;
-        this.userRepository = userRepository;
+
     }
 }

@@ -1,22 +1,21 @@
 package pl.sda.clinic.model;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
 public class Doctor {
 
     @Id
+    private Long id;
     private String firstName;
     private String lastName;
-    private String doctorId;
     private String specialization;
     private String password;
 
-    public Doctor(String doctorId, String specialization, String password, String firstName, String lastName) {
-        this.doctorId = doctorId;
+    public Doctor(Long id, String specialization, String password, String firstName, String lastName) {
+        this.id = id;
         this.specialization = specialization;
         this.password = password;
         this.firstName = firstName;
@@ -26,12 +25,12 @@ public class Doctor {
     public Doctor() {
     }
 
-    public String getDoctorId() {
-        return doctorId;
+    public Long getId() {
+        return id;
     }
 
-    public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getSpecialization() {
@@ -71,12 +70,12 @@ public class Doctor {
         if (this == o) return true;
         if (!(o instanceof Doctor)) return false;
         Doctor doctor = (Doctor) o;
-        return Objects.equals(getDoctorId(), doctor.getDoctorId());
+        return Objects.equals(getId(), doctor.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDoctorId());
+        return Objects.hash(getId());
     }
 
     @Override
@@ -84,7 +83,7 @@ public class Doctor {
         return "Doctor{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", doctorId='" + doctorId + '\'' +
+                ", id=" + id +
                 ", specialization='" + specialization + '\'' +
                 ", password='" + password + '\'' +
                 '}';
