@@ -15,14 +15,12 @@ public class Patient {
     private String lastName;
     @Id
     private Long pesel;
-    private LocalDateTime appointmentDate;
     private String password;
 
-    public Patient(String firstName, String lastName, String password,Long pesel, LocalDateTime appointmentDate) {
+    public Patient(String firstName, String lastName, String password,Long pesel) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.pesel = pesel;
-        this.appointmentDate = appointmentDate;
         this.password = password;
     }
 
@@ -53,14 +51,6 @@ public class Patient {
         this.pesel = pesel;
     }
 
-    public LocalDateTime getAppointmentDate() {
-        return appointmentDate;
-    }
-
-    public void setAppointmentDate(LocalDateTime appointmentDate) {
-        this.appointmentDate = appointmentDate;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -87,8 +77,7 @@ public class Patient {
         return "Patient{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", id=" + pesel +
-                ", appointmentDate=" + appointmentDate +
+                ", pesel=" + pesel +
                 ", password='" + password + '\'' +
                 '}';
     }
