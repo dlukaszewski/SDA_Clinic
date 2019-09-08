@@ -15,7 +15,7 @@ public class Visit {
     private Long id;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
-    private LocalDateTime appointmentDate;
+    private String appointmentDate;
 
     @ManyToOne(targetEntity = Doctor.class)
     private Doctor doctor;
@@ -24,7 +24,7 @@ public class Visit {
     private Patient patient;
 
 
-    public Visit(Long id, LocalDateTime appointmentDate)
+    public Visit(Long id, String appointmentDate)
     {
         this.id =id;
         this.appointmentDate = appointmentDate;
@@ -57,11 +57,11 @@ public class Visit {
         this.id = id;
     }
 
-    public LocalDateTime getAppointmentDate() {
+    public String getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(LocalDateTime appointmentDate) {
+    public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
