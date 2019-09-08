@@ -2,13 +2,17 @@ package pl.sda.clinic.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import pl.sda.clinic.model.Patient;
 import pl.sda.clinic.service.ClinicService;
 
 @Controller
 public class ClinicController {
 
 private final ClinicService clinicService;
+
 
     public ClinicController(ClinicService clinicService) {
         this.clinicService = clinicService;
@@ -30,5 +34,15 @@ private final ClinicService clinicService;
     public ModelAndView getPatientPage(){
         return new ModelAndView("patient");
     }
-
+    @GetMapping("/addPatient")
+    public ModelAndView createNewPatient() {
+        ModelAndView modelAndView = new ModelAndView("addPatient");
+        modelAndView.addObject("patient", new Patient());
+        return modelAndView;
+    }
+    @PostMapping("/addPatient")
+    public String addPatient(@ModelAttribute Patient patient) {
+        clinicService.addPatient(patient);
+        return "redirect:/patient";
+    }
 }
