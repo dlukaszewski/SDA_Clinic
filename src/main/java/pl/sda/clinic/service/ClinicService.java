@@ -1,5 +1,7 @@
 package pl.sda.clinic.service;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.sda.clinic.model.Doctor;
 import pl.sda.clinic.model.Patient;
@@ -12,7 +14,7 @@ import pl.sda.clinic.repository.VisitRepository;
 import java.util.List;
 
 @Service
-public class ClinicService {
+public class ClinicService implements org.springframework.security.core.userdetails.UserDetailsService{
 
     private final DoctorRepository doctorRepository;
     private final PatientRepository patientRepository;
@@ -37,5 +39,10 @@ public class ClinicService {
 
     public void addVisit(Visit visit) {
         visitRepository.save(visit);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return userRepository.findById(s).orElseThrow(() -> new UsernameNotFoundException("Could not foud User with username" + s));
     }
 }
