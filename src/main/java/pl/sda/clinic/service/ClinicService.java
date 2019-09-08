@@ -1,6 +1,7 @@
 package pl.sda.clinic.service;
 
 import org.springframework.stereotype.Service;
+import pl.sda.clinic.model.Patient;
 import pl.sda.clinic.repository.DoctorRepository;
 import pl.sda.clinic.repository.PatientRepository;
 import pl.sda.clinic.repository.UserRepository;
@@ -15,6 +16,8 @@ public class ClinicService {
     public ClinicService(DoctorRepository doctorRepository, PatientRepository patientRepository,UserRepository userRepository) {
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;
-
+    }
+    public void addPatient(Patient patient){
+        patientRepository.save(patient);
     }
 }
