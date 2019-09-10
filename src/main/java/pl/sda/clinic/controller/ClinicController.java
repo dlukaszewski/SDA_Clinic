@@ -49,11 +49,12 @@ public class ClinicController {
     public ModelAndView createNewPatient() {
         ModelAndView modelAndView = new ModelAndView("addPatient");
         modelAndView.addObject("patient", new Patient());
+        modelAndView.addObject("user" , new User());
         return modelAndView;
     }
     @PostMapping("/addPatient")
-    public String addPatient(@ModelAttribute Patient patient, User user) {
-        clinicService.addUser(user);
+    public String addPatient(@ModelAttribute Patient patient, @ModelAttribute User user) {
+        clinicService.addUser(patient.getUser());
         clinicService.addPatient(patient);
         return "redirect:/patientLogin";
     }

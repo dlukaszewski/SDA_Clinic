@@ -15,7 +15,8 @@ public class Patient {
     @Id
     private Long pesel;
 
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="user_id")
     private User user;
 
     public Patient(String firstName, String lastName,Long pesel) {

@@ -1,13 +1,11 @@
 package pl.sda.clinic.model;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
@@ -16,14 +14,18 @@ import java.util.Objects;
 public class User implements UserDetails {
 
     @Id
+    /*@GeneratedValue(generator = "userSeq")
+    @SequenceGenerator(name = "userSeq", sequenceName = "user_seq", allocationSize = 1)
+    private Long id;*/
     private String username;
     private String password;
 
     public User() {
     }
-    public User(String username, String password) {
+    public User(String username, String password, Long id) {
         this.username = username;
         this.password = password;
+        //this.id = id;
 
     }
     @ManyToOne(targetEntity = Role.class)
@@ -52,6 +54,14 @@ public class User implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    /*public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }*/
 
     @Override
     public boolean isAccountNonExpired() {

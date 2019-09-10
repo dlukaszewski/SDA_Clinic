@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <td><form:label path="user.username">Login</form:label></td>
-            <td><form:input type="username" path="user.usename"/></td>
+            <td><form:input type="username" path="user.username"/></td>
         </tr>
         <tr>
             <td><form:label path="user.password">Hasło</form:label></td>
