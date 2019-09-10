@@ -1,30 +1,40 @@
 package pl.sda.clinic.model;
 
-
+import javax.persistence.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
+
 import java.util.Objects;
 
 @Entity
 public class Patient {
 
-
     private String firstName;
     private String lastName;
     @Id
     private Long pesel;
-    private String password;
 
-    public Patient(String firstName, String lastName, String password,Long pesel) {
+    @Embedded
+    public User user;
+
+    public Patient(String firstName, String lastName,Long pesel) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.pesel = pesel;
-        this.password = password;
+        this.user = new User();
     }
 
     public Patient() {
+        this.user = new User();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getFirstName() {
@@ -51,12 +61,29 @@ public class Patient {
         this.pesel = pesel;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUsername(){
+        if (user == null){
+            return "";
+        }
+        return user.getUsername();
     }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public String getPassword(){
+        if (user == null){
+            return "";
+        }
+        return user.getPassword();
+    }
+    public void SetUsername(String username){
+        if (user == null){
+            user = new User();
+        }
+        user.setUsername(username);
+    }
+    public void SetPassword(String password){
+        if (user == null){
+            user = new User();
+        }
+        user.setPassword(password);
     }
 
     @Override
@@ -78,7 +105,6 @@ public class Patient {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", pesel=" + pesel +
-                ", password='" + password + '\'' +
                 '}';
     }
 }

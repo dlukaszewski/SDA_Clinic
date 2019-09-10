@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.clinic.model.Doctor;
 import pl.sda.clinic.model.Patient;
+import pl.sda.clinic.model.User;
 import pl.sda.clinic.model.Visit;
 import pl.sda.clinic.service.ClinicService;
 
@@ -51,7 +52,8 @@ public class ClinicController {
         return modelAndView;
     }
     @PostMapping("/addPatient")
-    public String addPatient(@ModelAttribute Patient patient) {
+    public String addPatient(@ModelAttribute Patient patient, User user) {
+        clinicService.addUser(user);
         clinicService.addPatient(patient);
         return "redirect:/patientLogin";
     }

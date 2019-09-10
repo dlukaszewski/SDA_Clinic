@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.sda.clinic.model.Doctor;
 import pl.sda.clinic.model.Patient;
+import pl.sda.clinic.model.User;
 import pl.sda.clinic.model.Visit;
 import pl.sda.clinic.repository.DoctorRepository;
 import pl.sda.clinic.repository.PatientRepository;
@@ -31,6 +32,9 @@ public class ClinicService implements org.springframework.security.core.userdeta
 
     public void addPatient(Patient patient) {
         patientRepository.save(patient);
+    }
+    public void addUser(User user){
+        userRepository.save(user);
     }
 
     public List<Doctor> getDoctorList() {
