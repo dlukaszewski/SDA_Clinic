@@ -15,8 +15,8 @@ public class Patient {
     @Id
     private Long pesel;
 
-    @Embedded
-    public User user;
+    @ManyToOne(targetEntity = User.class)
+    private User user;
 
     public Patient(String firstName, String lastName,Long pesel) {
         this.firstName = firstName;
@@ -61,30 +61,6 @@ public class Patient {
         this.pesel = pesel;
     }
 
-    public String getUsername(){
-        if (user == null){
-            return "";
-        }
-        return user.getUsername();
-    }
-    public String getPassword(){
-        if (user == null){
-            return "";
-        }
-        return user.getPassword();
-    }
-    public void SetUsername(String username){
-        if (user == null){
-            user = new User();
-        }
-        user.setUsername(username);
-    }
-    public void SetPassword(String password){
-        if (user == null){
-            user = new User();
-        }
-        user.setPassword(password);
-    }
 
     @Override
     public boolean equals(Object o) {

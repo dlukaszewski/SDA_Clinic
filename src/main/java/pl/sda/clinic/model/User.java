@@ -5,23 +5,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Embeddable;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
 
-@Embeddable
+@Entity
 public class User implements UserDetails {
 
     @Id
     private String username;
     private String password;
 
-
     public User() {
     }
-
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -96,4 +95,5 @@ public class User implements UserDetails {
                 ", role=" + role +
                 '}';
     }
+
 }
