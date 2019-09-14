@@ -29,7 +29,7 @@ private final ClinicService clinicService;
                 .antMatchers("/h2-console").permitAll()
                 .antMatchers("/admin").hasAuthority("ADMIN")
                 .antMatchers("/doctor").hasAnyAuthority("ADMIN","DOCTOR")
-                .antMatchers("/patientPanel").hasAnyAuthority("PATIENT","ADMIN")
+                .antMatchers("/patientPanel").hasAuthority("PATIENT")
                 .and()
                 .formLogin().loginPage("/loginPage")
                 .usernameParameter("username")
