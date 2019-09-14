@@ -4,5 +4,7 @@
 <!DOCTYPE html>
 <body>
 <h1>Dziekujemy za umówienie wizyty</h1>
-<a href="/patientLogin">Wyloguj</a>
+<a href="/loginPage">Wyloguj</a>
+<br>
+<a href="/">Powrót do strony głównej</a>
 </body>

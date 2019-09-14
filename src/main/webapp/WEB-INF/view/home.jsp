@@ -7,7 +7,7 @@
 
 <h1>Welcome to our clinic</h1>
 <br>
-<form action="/patientLogin">
+<form action="/patientPanel">
     <h1>Panel Pacjenta</h1>
     <br>
     <input type="submit" value="Panel Pacjenta">

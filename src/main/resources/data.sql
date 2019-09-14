@@ -12,5 +12,6 @@ insert INTO USER (username, password,role_id) values ('admin', '$2a$10$6Uwop6rBq
 
 insert INTO USER (username,password,role_id) values ('patient','$2a$10$6Uwop6rBqC0/A5p93zpfRuHo/ikJ.KuBUMTcOpaDE/nNF3jqrfuYm',1 );
 insert INTO USER (username,password,role_id) values ('patient1','$2a$10$6Uwop6rBqC0/A5p93zpfRuHo/ikJ.KuBUMTcOpaDE/nNF3jqrfuYm',1 );
+insert INTO USER (username,password,role_id) values ('doctor','$2a$10$6Uwop6rBqC0/A5p93zpfRuHo/ikJ.KuBUMTcOpaDE/nNF3jqrfuYm',2 );
 
 insert INTO VISIT(id,appointment_date,patient_pesel,doctor_id) values (nextval('visit_seq'),parsedatetime('2019-09-15 10:00', 'yyyy-MM-dd hh:mm'),'87032518567',1);

@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html lang="pl">
 <body>
-<form name="patientForm"
-      action="/patientLogin" method="POST">
+<form name="loginForm"
+      action="/loginPage" method="POST">
 
     <table>
         <tr>

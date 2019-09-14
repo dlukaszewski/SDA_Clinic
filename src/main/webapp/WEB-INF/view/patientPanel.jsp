@@ -25,5 +25,7 @@
         </td>
     </table>
 </form:form>
-<td><a href="/patientLogin">Wyloguj</a></td>
+<td><a href="/logout">Wyloguj</a></td>
+<br>
+<a href="/">Powrót do strony głównej</a>
 </body>

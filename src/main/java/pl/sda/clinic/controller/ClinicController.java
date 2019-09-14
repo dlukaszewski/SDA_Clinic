@@ -29,14 +29,19 @@ public class ClinicController {
         return new ModelAndView("admin");
     }
 
+    @GetMapping("/accessDenied")
+    public ModelAndView getAccesDeniedPage() {
+        return new ModelAndView("accessDenied");
+    }
+
     @GetMapping("/doctor")
     public ModelAndView getDoctorPage() {
         return new ModelAndView("doctor");
     }
 
-    @GetMapping("/patientLogin")
-    public ModelAndView getPatientPage() {
-        return new ModelAndView("patientLogin");
+    @GetMapping("/loginPage")
+    public ModelAndView getLoginPage() {
+        return new ModelAndView("loginPage");
     }
     @GetMapping("/infoPage")
     public ModelAndView getInfoPage() {
@@ -55,7 +60,7 @@ public class ClinicController {
         user.setRole(clinicService.findRoleByAuthority("PATIENT"));
         clinicService.addUser(user);
         clinicService.addPatient(patient);
-        return "redirect:/patientLogin";
+        return "redirect:/loginPage";
     }
     @GetMapping("/patientPanel")
     public ModelAndView showDoctorsList() {

@@ -25,13 +25,13 @@ private final ClinicService clinicService;
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/patientLogin").permitAll()
+                .antMatchers("/loginPage").permitAll()
                 .antMatchers("/h2-console").permitAll()
                 .antMatchers("/admin").hasAuthority("ADMIN")
                 .antMatchers("/doctor").hasAnyAuthority("ADMIN","DOCTOR")
-                .antMatchers("/patientPanel").hasAuthority("PATIENT")
+                .antMatchers("/patientPanel").hasAnyAuthority("PATIENT","ADMIN")
                 .and()
-                .formLogin().loginPage("/patientLogin")
+                .formLogin().loginPage("/loginPage")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .successHandler(successHandler())
@@ -42,7 +42,7 @@ private final ClinicService clinicService;
                 .headers().frameOptions().disable()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/patientLogin");
+                .logoutSuccessUrl("/");
 
     }
     @Override
