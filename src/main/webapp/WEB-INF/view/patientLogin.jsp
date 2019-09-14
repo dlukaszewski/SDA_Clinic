@@ -10,7 +10,7 @@
     <table>
         <tr>
             <td>Login:</td>
-            <td><input type="text" name="user"></td>
+            <td><input type="text" name="username"></td>
         </tr>
         <tr>
             <td>Hasło:</td>
