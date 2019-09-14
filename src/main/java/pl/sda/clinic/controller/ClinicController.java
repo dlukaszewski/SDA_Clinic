@@ -1,39 +1,48 @@
 package pl.sda.clinic.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import pl.sda.clinic.model.Patient;
+import pl.sda.clinic.model.*;
+import pl.sda.clinic.repository.RoleRepository;
 import pl.sda.clinic.service.ClinicService;
+
+import java.util.List;
 
 @Controller
 public class ClinicController {
 
-private final ClinicService clinicService;
+    private final ClinicService clinicService;
 
 
     public ClinicController(ClinicService clinicService) {
         this.clinicService = clinicService;
     }
 
-    @GetMapping ("/")
-    public ModelAndView getHomePage(){
+    @GetMapping("/")
+    public ModelAndView getHomePage() {
         return new ModelAndView("home");
     }
-    @GetMapping ("/admin")
-    public ModelAndView getAdminPage(){
+
+    @GetMapping("/admin")
+    public ModelAndView getAdminPage() {
         return new ModelAndView("admin");
     }
+
     @GetMapping("/doctor")
-    public ModelAndView getDoctorPage(){
-        return  new ModelAndView("doctor");
+    public ModelAndView getDoctorPage() {
+        return new ModelAndView("doctor");
     }
-    @GetMapping("/patient")
-    public ModelAndView getPatientPage(){
-        return new ModelAndView("patient");
+
+    @GetMapping("/patientLogin")
+    public ModelAndView getPatientPage() {
+        return new ModelAndView("patientLogin");
     }
+    @GetMapping("/infoPage")
+    public ModelAndView getInfoPage() {
+        return new ModelAndView("infoPage");
+    }
+
     @GetMapping("/addPatient")
     public ModelAndView createNewPatient() {
         ModelAndView modelAndView = new ModelAndView("addPatient");
@@ -42,7 +51,26 @@ private final ClinicService clinicService;
     }
     @PostMapping("/addPatient")
     public String addPatient(@ModelAttribute Patient patient) {
+        User user = patient.getUser();
+        user.setRole(clinicService.findRoleByAuthority("PATIENT"));
+        clinicService.addUser(user);
         clinicService.addPatient(patient);
-        return "redirect:/patient";
+        return "redirect:/patientLogin";
+    }
+    @GetMapping("/patientPanel")
+    public ModelAndView showDoctorsList() {
+        List<Doctor> doctors = clinicService.getDoctorList();
+        Visit visit = new Visit();
+        ModelAndView modelAndView = new ModelAndView("patientPanel");
+        modelAndView.addObject("doctors", doctors);
+        modelAndView.addObject("visit",visit);
+        return modelAndView;
+    }
+    @PostMapping("/addVisit")
+    public String addVisit(@ModelAttribute Visit visit){
+        clinicService.addVisit(visit);
+        return "redirect:/infoPage";
     }
 }
+
+

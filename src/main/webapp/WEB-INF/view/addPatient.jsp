@@ -21,9 +21,14 @@
             <td><form:input path="pesel"/></td>
         </tr>
         <tr>
-            <td><form:label path="password">Hasło</form:label></td>
-            <td><form:input type="password" path="password"/></td>
+            <td><form:label path="user.username">Login</form:label></td>
+            <td><form:input type="username" path="user.username"/></td>
         </tr>
+        <tr>
+            <td><form:label path="user.password">Hasło</form:label></td>
+            <td><form:input type="password" path="user.password"/></td>
+        </tr>
+
         <tr>
             <td><input type="submit" value="Zatwierdź"/></td>
         </tr>

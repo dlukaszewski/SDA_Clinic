@@ -1,32 +1,45 @@
 package pl.sda.clinic.model;
 
-
+import javax.persistence.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
+
 import java.util.Objects;
 
 @Entity
 public class Patient {
 
-
     private String firstName;
     private String lastName;
     @Id
     private Long pesel;
-    private LocalDateTime appointmentDate;
-    private String password;
 
-    public Patient(String firstName, String lastName, String password,Long pesel, LocalDateTime appointmentDate) {
+
+    @ManyToOne(targetEntity = User.class)
+    private User user;
+
+
+    public Patient(String firstName, String lastName,Long pesel) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.pesel = pesel;
-        this.appointmentDate = appointmentDate;
-        this.password = password;
+        this.user = new User();
+
+
     }
 
+
     public Patient() {
+        this.user = new User();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getFirstName() {
@@ -53,21 +66,6 @@ public class Patient {
         this.pesel = pesel;
     }
 
-    public LocalDateTime getAppointmentDate() {
-        return appointmentDate;
-    }
-
-    public void setAppointmentDate(LocalDateTime appointmentDate) {
-        this.appointmentDate = appointmentDate;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -87,9 +85,7 @@ public class Patient {
         return "Patient{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", id=" + pesel +
-                ", appointmentDate=" + appointmentDate +
-                ", password='" + password + '\'' +
+                ", pesel=" + pesel +
                 '}';
     }
 }
