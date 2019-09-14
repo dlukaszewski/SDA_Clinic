@@ -108,5 +108,17 @@ public class ClinicController {
         clinicService.removeDoctor(id);
         return "redirect:/removeDoctor";
     }
+    @GetMapping("/removePatient")
+    public ModelAndView getPatientList(){
+        List<Patient> patients = clinicService.getPatientList();
+        ModelAndView modelAndView = new ModelAndView("removePatient");
+        modelAndView.addObject("patients",patients);
+        return modelAndView;
+    }
+    @GetMapping("/removePatient/{pesel}")
+    public String removePatientFromList(@PathVariable Long pesel) {
+        clinicService.removePatient(pesel);
+        return "redirect:/removePatient";
+    }
 }
 

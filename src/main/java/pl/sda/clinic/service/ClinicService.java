@@ -38,9 +38,15 @@ public class ClinicService implements org.springframework.security.core.userdeta
     public void removeDoctor(Long id){
         doctorRepository.deleteById(id);
     }
+    public void removePatient(Long pesel){
+        patientRepository.deleteById(pesel);
+    }
 
     public List<Doctor> getDoctorList() {
         return doctorRepository.findAll();
+    }
+    public List<Patient> getPatientList(){
+        return patientRepository.findAll();
     }
 
     public void addVisit(Visit visit) {
