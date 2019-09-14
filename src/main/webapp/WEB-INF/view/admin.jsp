@@ -1,22 +1,13 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
 <html>
 <body>
-<form name="adminForm" action="/admin" method="POST">
 
-    <table>
-        <tr>
-            <td>User:</td>
-            <td><input type="text" name="username"></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type="password" name="password" /></td>
-        </tr>
-        <tr>
-            <td colspan='4'><input  name="submit" type="submit" value="Zaloguj" /></td>
-        </tr>
-    </table>
+    <h1>Witamy w portalu Administratora</h1>
+    <a href="/logout">Wyloguj</a>
+    <br>
+    <a href="/">Powrót do strony głównej</a>
 
-</form>
 </body>
 </html>

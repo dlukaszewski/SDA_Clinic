@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html lang="pl">
 <body>
-<form name="patientForm"
-      action="/patientLogin" method="POST">
+<form name="loginForm"
+      action="/loginPage" method="POST">
 
     <table>
         <tr>
             <td>Login:</td>
-            <td><input type="text" name="user"></td>
+            <td><input type="text" name="username"></td>
         </tr>
         <tr>
             <td>Hasło:</td>

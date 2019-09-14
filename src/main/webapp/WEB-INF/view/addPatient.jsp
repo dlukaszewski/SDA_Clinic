@@ -32,6 +32,10 @@
         <tr>
             <td><input type="submit" value="Zatwierdź"/></td>
         </tr>
+
+        <tr>
+            <td><br><a href="/">Powrót do strony głównej</a></td>
+        </tr>
     </table>
 </form:form>
 </body>
