@@ -14,14 +14,14 @@ public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(generator = "roleSeq")
     @SequenceGenerator(name = "roleSeq", sequenceName = "role_seq", allocationSize = 1)
-    private String id;
+    private Long id;
     private String authority;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -38,12 +38,12 @@ public class Role implements GrantedAuthority {
         if (this == o) return true;
         if (!(o instanceof Role)) return false;
         Role role = (Role) o;
-        return Objects.equals(id, role.id) &&
-                Objects.equals(authority, role.authority);
+        return Objects.equals(getId(), role.getId()) &&
+                Objects.equals(getAuthority(), role.getAuthority());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, authority);
+        return Objects.hash(getId(), getAuthority());
     }
 }

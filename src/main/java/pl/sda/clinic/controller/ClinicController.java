@@ -3,10 +3,8 @@ package pl.sda.clinic.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import pl.sda.clinic.model.Doctor;
-import pl.sda.clinic.model.Patient;
-import pl.sda.clinic.model.User;
-import pl.sda.clinic.model.Visit;
+import pl.sda.clinic.model.*;
+import pl.sda.clinic.repository.RoleRepository;
 import pl.sda.clinic.service.ClinicService;
 
 import java.util.List;
@@ -49,12 +47,13 @@ public class ClinicController {
     public ModelAndView createNewPatient() {
         ModelAndView modelAndView = new ModelAndView("addPatient");
         modelAndView.addObject("patient", new Patient());
-        modelAndView.addObject("user" , new User());
         return modelAndView;
     }
     @PostMapping("/addPatient")
-    public String addPatient(@ModelAttribute Patient patient, @ModelAttribute User user) {
-        clinicService.addUser(patient.getUser());
+    public String addPatient(@ModelAttribute Patient patient) {
+        User user = patient.getUser();
+        user.setRole(clinicService.findRoleByAuthority("PATIENT"));
+        clinicService.addUser(user);
         clinicService.addPatient(patient);
         return "redirect:/patientLogin";
     }

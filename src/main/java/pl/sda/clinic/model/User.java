@@ -14,18 +14,16 @@ import java.util.Objects;
 public class User implements UserDetails {
 
     @Id
-    /*@GeneratedValue(generator = "userSeq")
-    @SequenceGenerator(name = "userSeq", sequenceName = "user_seq", allocationSize = 1)
-    private Long id;*/
     private String username;
     private String password;
 
     public User() {
     }
-    public User(String username, String password, Long id) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        //this.id = id;
+        this.role = new Role();
+
 
     }
     @ManyToOne(targetEntity = Role.class)
@@ -55,17 +53,17 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    /*public Long getId() {
-        return id;
+    public Role getRole() {
+        return role;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }*/
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
@@ -101,7 +99,6 @@ public class User implements UserDetails {
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", role=" + role +
                 '}';
     }

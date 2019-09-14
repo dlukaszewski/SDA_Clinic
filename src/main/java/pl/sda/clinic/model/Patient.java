@@ -15,16 +15,20 @@ public class Patient {
     @Id
     private Long pesel;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="user_id")
+
+    @ManyToOne(targetEntity = User.class)
     private User user;
+
 
     public Patient(String firstName, String lastName,Long pesel) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.pesel = pesel;
         this.user = new User();
+
+
     }
+
 
     public Patient() {
         this.user = new User();

@@ -3,14 +3,8 @@ package pl.sda.clinic.service;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import pl.sda.clinic.model.Doctor;
-import pl.sda.clinic.model.Patient;
-import pl.sda.clinic.model.User;
-import pl.sda.clinic.model.Visit;
-import pl.sda.clinic.repository.DoctorRepository;
-import pl.sda.clinic.repository.PatientRepository;
-import pl.sda.clinic.repository.UserRepository;
-import pl.sda.clinic.repository.VisitRepository;
+import pl.sda.clinic.model.*;
+import pl.sda.clinic.repository.*;
 
 import java.util.List;
 
@@ -21,13 +15,15 @@ public class ClinicService implements org.springframework.security.core.userdeta
     private final PatientRepository patientRepository;
     private final UserRepository userRepository;
     private final VisitRepository visitRepository;
+    private final RoleRepository roleRepository;
 
 
-    public ClinicService(DoctorRepository doctorRepository, PatientRepository patientRepository, UserRepository userRepository, VisitRepository visitRepository) {
+    public ClinicService(DoctorRepository doctorRepository, PatientRepository patientRepository, UserRepository userRepository, VisitRepository visitRepository, RoleRepository roleRepository) {
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;
         this.userRepository = userRepository;
         this.visitRepository = visitRepository;
+        this.roleRepository = roleRepository;
     }
 
     public void addPatient(Patient patient) {
@@ -49,4 +45,8 @@ public class ClinicService implements org.springframework.security.core.userdeta
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return userRepository.findById(s).orElseThrow(() -> new UsernameNotFoundException("Could not foud User with username" + s));
     }
+
+    public Role findRoleByAuthority (String authority) throws UsernameNotFoundException{
+        return roleRepository.findByAuthority(authority).orElseThrow(()->new UsernameNotFoundException("Could not found authority"+ authority));
+        }
 }

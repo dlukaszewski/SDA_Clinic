@@ -29,7 +29,7 @@ private final ClinicService clinicService;
                 .antMatchers("/h2-console").permitAll()
                 .antMatchers("/admin").hasAuthority("ADMIN")
                 .antMatchers("/doctor").hasAnyAuthority("ADMIN","DOCTOR")
-                .antMatchers("/patientPanel").authenticated()
+                .antMatchers("/patientPanel").hasAuthority("PATIENT")
                 .and()
                 .formLogin().loginPage("/patientLogin")
                 .usernameParameter("username")
@@ -42,7 +42,7 @@ private final ClinicService clinicService;
                 .headers().frameOptions().disable()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/patientPanel");
+                .logoutSuccessUrl("/patientLogin");
 
     }
     @Override
