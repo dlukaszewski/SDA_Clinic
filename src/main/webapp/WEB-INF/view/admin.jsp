@@ -5,6 +5,16 @@
 <body>
 
     <h1>Witamy w portalu Administratora</h1>
+    <form action="/addDoctor">
+        <h4>Dodaj Lekarza do Systemu</h4>
+        <input type="submit" value="Select">
+    </form>
+    <br>
+    <form action="/removeDoctor">
+        <h4>Usuń Lekarza z Systemu</h4>
+        <input type="submit" value="Select">
+    </form>
+    <br>
     <a href="/logout">Wyloguj</a>
     <br>
     <a href="/">Powrót do strony głównej</a>
