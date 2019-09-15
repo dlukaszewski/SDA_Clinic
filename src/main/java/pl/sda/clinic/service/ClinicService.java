@@ -32,6 +32,12 @@ public class ClinicService implements org.springframework.security.core.userdeta
     public void addUser(User user){
         userRepository.save(user);
     }
+    public void addDoctor(Doctor doctor){
+        doctorRepository.save(doctor);
+    }
+    public void removeDoctor(Long id){
+        doctorRepository.deleteById(id);
+    }
 
     public List<Doctor> getDoctorList() {
         return doctorRepository.findAll();

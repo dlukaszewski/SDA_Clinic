@@ -1,9 +1,6 @@
 package pl.sda.clinic.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -17,12 +14,16 @@ public class Doctor {
     private String lastName;
     private String specialization;
 
+    @ManyToOne(targetEntity = User.class)
+    private User user;
 
     public Doctor(Long id, String specialization, String firstName, String lastName) {
         this.id = id;
         this.specialization = specialization;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.user = new User();
+
     }
 
     public Doctor() {
@@ -59,6 +60,14 @@ public class Doctor {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
