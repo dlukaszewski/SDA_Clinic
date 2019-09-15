@@ -27,6 +27,7 @@ public class Doctor {
     }
 
     public Doctor() {
+        this.user = new User();
     }
 
     public Long getId() {

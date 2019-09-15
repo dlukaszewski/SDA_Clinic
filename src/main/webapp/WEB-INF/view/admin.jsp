@@ -15,6 +15,11 @@
         <input type="submit" value="Select">
     </form>
     <br>
+    <form action="/removePatient">
+        <h4>Usuń Pacjenta z Systemu</h4>
+        <input type="submit" value="Select">
+    </form>
+    <br>
     <a href="/logout">Wyloguj</a>
     <br>
     <a href="/">Powrót do strony głównej</a>

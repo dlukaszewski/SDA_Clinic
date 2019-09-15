@@ -58,9 +58,6 @@ public class ClinicController {
 
     @PostMapping("/addPatient")
     public String addPatient(@ModelAttribute Patient patient) {
-        User user = patient.getUser();
-        user.setRole(clinicService.findRoleByAuthority("PATIENT"));
-        clinicService.addUser(user);
         clinicService.addPatient(patient);
         return "redirect:/loginPage";
     }
@@ -89,9 +86,6 @@ public class ClinicController {
     }
     @PostMapping("/addDoctor")
     public String addDoctor(@ModelAttribute Doctor doctor) {
-        User user = doctor.getUser();
-        user.setRole(clinicService.findRoleByAuthority("DOCTOR"));
-        clinicService.addUser(user);
         clinicService.addDoctor(doctor);
         return "redirect:/admin";
     }
@@ -107,6 +101,18 @@ public class ClinicController {
     public String removeDoctorFromList(@PathVariable Long id) {
         clinicService.removeDoctor(id);
         return "redirect:/removeDoctor";
+    }
+    @GetMapping("/removePatient")
+    public ModelAndView getPatientList(){
+        List<Patient> patients = clinicService.getPatientList();
+        ModelAndView modelAndView = new ModelAndView("removePatient");
+        modelAndView.addObject("patients",patients);
+        return modelAndView;
+    }
+    @GetMapping("/removePatient/{pesel}")
+    public String removePatientFromList(@PathVariable Long pesel) {
+        clinicService.removePatient(pesel);
+        return "redirect:/removePatient";
     }
 }
 
