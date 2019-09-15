@@ -58,9 +58,6 @@ public class ClinicController {
 
     @PostMapping("/addPatient")
     public String addPatient(@ModelAttribute Patient patient) {
-        User user = patient.getUser();
-        user.setRole(clinicService.findRoleByAuthority("PATIENT"));
-        clinicService.addUser(user);
         clinicService.addPatient(patient);
         return "redirect:/loginPage";
     }
@@ -89,9 +86,6 @@ public class ClinicController {
     }
     @PostMapping("/addDoctor")
     public String addDoctor(@ModelAttribute Doctor doctor) {
-        User user = doctor.getUser();
-        user.setRole(clinicService.findRoleByAuthority("DOCTOR"));
-        clinicService.addUser(user);
         clinicService.addDoctor(doctor);
         return "redirect:/admin";
     }
