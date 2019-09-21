@@ -2,9 +2,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="pl">
-
-
-
 <body>
 <form:form method="POST" action="/addPatient" modelAttribute="patient">
     <table>

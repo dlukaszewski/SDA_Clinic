@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import pl.sda.clinic.model.*;
 import pl.sda.clinic.repository.*;
 
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClinicService implements org.springframework.security.core.userdetails.UserDetailsService{
@@ -44,21 +46,35 @@ public class ClinicService implements org.springframework.security.core.userdeta
     public void removeDoctor(Long id){
         doctorRepository.deleteById(id);
     }
+    public void findDoctorById(Long id){
+        doctorRepository.findById(id);
+    }
     public void removePatient(Long pesel){
         patientRepository.deleteById(pesel);
     }
-
+    public Patient getPatientByUserName(String username){
+        return patientRepository.searchByUserUserName(username).orElseThrow(() -> new RuntimeException("sfh"));
+    }
     public List<Doctor> getDoctorList() {
         return doctorRepository.findAll();
     }
     public List<Patient> getPatientList(){
         return patientRepository.findAll();
     }
+    public List<Visit> getVisitList(){return visitRepository.findAll();}
+
 
     public void addVisit(Visit visit) {
         visitRepository.save(visit);
     }
 
+    public List<Visit> getNotBookedVisit(Long doctorId){
+        return visitRepository.searchNotBookedVisit(doctorId);//id doctora
+    }
+
+    public Visit findVisitById(Long id){
+        return visitRepository.findById(id).orElseThrow(() ->new UsernameNotFoundException("Could not found Visit with ID" + id));
+    }
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return userRepository.findById(s).orElseThrow(() -> new UsernameNotFoundException("Could not foud User with username" + s));
@@ -67,4 +83,8 @@ public class ClinicService implements org.springframework.security.core.userdeta
     public Role findRoleByAuthority (String authority) throws UsernameNotFoundException{
         return roleRepository.findByAuthority(authority).orElseThrow(()->new UsernameNotFoundException("Could not found authority"+ authority));
         }
+
+    public void removeVisit(Long id) {
+        visitRepository.deleteById(id);
+    }
 }

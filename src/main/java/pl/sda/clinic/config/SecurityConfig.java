@@ -52,7 +52,7 @@ private final ClinicService clinicService;
 
     @Bean
     AuthenticationSuccessHandler successHandler() {
-        return new SavedRequestAwareAuthenticationSuccessHandler();
+        return new UserLoginSuccessHandler();
     }
 
     @Bean

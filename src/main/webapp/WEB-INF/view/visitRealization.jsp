@@ -2,17 +2,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <html>
 <body>
-<h1>Witamy w portalu Lekarza</h1>
+<h1>Wizyty</h1>
 <form action="/visitRealization">
     <h4>Wizyty</h4>
     <input type="submit" value="Select">
 </form>
-<form action="/workSchedule">
-    <h4>Grafik przyjęć</h4>
-    <input type="submit" value="Select">
-</form>
-<a href="/logout">Wyloguj</a>
-<br>
-<a href="/">Powrót do strony głównej</a>
+
+
+<a href="/doctor">Powrót</a>
 </body>
 </html>

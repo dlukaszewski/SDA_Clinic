@@ -3,7 +3,6 @@ package pl.sda.clinic.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -28,9 +27,12 @@ public class Visit {
     {
         this.id =id;
         this.appointmentDate = appointmentDate;
+        this.patient = new Patient();
+        this.doctor = new Doctor();
     }
 
     public Visit() {
+        this.doctor = new Doctor();
     }
 
     public Doctor getDoctor() {
