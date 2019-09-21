@@ -148,14 +148,10 @@ public class ClinicController {
         clinicService.removePatient(pesel);
         return "redirect:/removePatient";
     }
-    @GetMapping("/onclick")
-    public ModelAndView onClickPage(){
-        return new ModelAndView("onclick");
-    }
 
     @GetMapping("/book/{visitId}")
     public String bookVisit(@PathVariable long visitId) {
-        User loggedUser = sessionUserProvider.getLoggedUser();//aktualny zalogowany user
+        User loggedUser = sessionUserProvider.getLoggedUser();//aktualnie zalogowany user
         String username = loggedUser.getUsername();//przekazanie username
         Patient patientByUserName = clinicService.getPatientByUserName(username);//pobieram pacjenta po nazwie username
         Visit visitById = clinicService.findVisitById(visitId);//pobranie wizyty po identyfikatorze
